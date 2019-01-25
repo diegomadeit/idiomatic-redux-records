@@ -1,5 +1,5 @@
 import React from "react";
-import RecordList from "../../components/Record/RecordList";
+import RecordList from "../../components/record/RecordList";
 
 const CollectionList = props => {
   const { releases } = props;

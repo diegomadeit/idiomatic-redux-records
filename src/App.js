@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import logo from "./logo.svg";
-import Collection from "./views/Collection/Collection";
+import Collection from "./views/collection/Collection";
 import withRouter from "./containers/withRouter";
 import { Route, Redirect } from "react-router-dom";
 

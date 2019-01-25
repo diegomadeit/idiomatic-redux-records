@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Record from "../../components/Record/Record";
+import Record from "../../components/record/Record";
 
 const CollectionItem = props => {
   const { collectionPath, release } = props;

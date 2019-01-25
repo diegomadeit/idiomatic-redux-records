@@ -1,18 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import HoverLink from "../common/HoverLink";
+import styles from "./RecordThumbnail.module.css";
 
 const RecordThumbnail = ({ basic_information }) => (
-  <div className="record-thumbnail">
-    {basic_information.title}
-    {basic_information.year}
-    {basic_information.artists.map(artist => (
-      <span key={artist.id}>{artist.name}</span>
-    ))}
-    <br />
-    <Link to={`records/${basic_information.id}`}>
-      <img src={basic_information.cover_image} alt={basic_information.title} />
-    </Link>
-  </div>
+  <HoverLink to={`records/${basic_information.id}`} hoverClass={styles.hover}>
+    <article className={styles.record}>
+      <figure className={styles.record__figure}>
+        <img
+          className={styles.record__img}
+          src={basic_information.cover_image}
+          alt={basic_information.title}
+        />
+        <figcaption className={styles.record__figcaption}>
+          <h2 className={styles.record__artist}>
+            {basic_information.artists.length
+              ? basic_information.artists[0].name
+              : "Unk."}
+          </h2>
+          <h3 className={styles.record__title}>{basic_information.title}</h3>
+          <span className={styles.record__year}>
+            {basic_information.year ? basic_information.year : "Unk."}
+          </span>
+        </figcaption>
+      </figure>
+    </article>
+  </HoverLink>
 );
 
 export default RecordThumbnail;

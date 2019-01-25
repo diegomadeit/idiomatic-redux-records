@@ -1,22 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import Routes from "./routes";
+import withLayout from "./containers/withLayout";
 import "./App.css";
-import logo from "./logo.svg";
-import Collection from "./views/collection/Collection";
-import withRouter from "./containers/withRouter";
-import { Route, Redirect } from "react-router-dom";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <Route path="/records" render={props => <Collection {...props} />} />
-        <Route exact path="/" render={() => <Redirect to="/records" />} />
-      </div>
-    );
-  }
-}
+const App = () => <Routes />;
 
-export default withRouter(App);
+export default withLayout(App);

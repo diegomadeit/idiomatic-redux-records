@@ -3,11 +3,11 @@ import RecordThumbnail from "./RecordThumbnail";
 import styles from "./RecordList.module.css";
 
 const RecordList = ({ releases }) => (
-  <section className={styles.records}>
+  <div className={styles.records}>
     {releases &&
       releases.map(release => (
         <RecordThumbnail key={release.id} {...release} />
       ))}
-  </section>
+  </div>
 );
 export default RecordList;

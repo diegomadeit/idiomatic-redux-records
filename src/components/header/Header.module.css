@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.header__img {
+  animation: spin infinite 20s linear;
+  height: 10vmin;
+  margin-right: 20px;
+}
+
+.header__heading {
+  color: #fff;
+  font-size: 5vmin;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

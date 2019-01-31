@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 const Header = () => (
   <header className={styles.header}>
     <img src={logo} className={styles.header__img} alt="logo" />
-    <h1 className={styles.header__heading}>My record collection in Discogs</h1>
+    <h1 className={styles.header__heading}>react records</h1>
   </header>
 );
 

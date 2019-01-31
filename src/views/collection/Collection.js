@@ -31,7 +31,11 @@ class Collection extends Component {
             const { recordId } = props.match.params;
             const release = this.getRelease(recordId);
             return (
-              <CollectionItem release={release} collectionPath={match.path} />
+              <CollectionItem
+                release={release}
+                collectionPath={match.path}
+                {...props}
+              />
             );
           }}
         />

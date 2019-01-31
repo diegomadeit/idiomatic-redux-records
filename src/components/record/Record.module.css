@@ -1,0 +1,66 @@
+.record {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.record__cover {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  padding: 50% 0;
+}
+
+.record__cover--secondary {
+  width: 25%;
+  padding: 12.5% 0;
+  display: inline-block;
+}
+
+.record__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.record__artist {
+  font-size: 2rem;
+  margin: 2rem 0 0 0;
+}
+
+.record__title {
+  margin: 0 0 2rem 0;
+}
+
+.record__songs {
+  list-style: none;
+  padding: 0;
+}
+
+.record__song {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #fff;
+}
+
+@media (min-width: 768px) {
+  .record {
+    flex-direction: row;
+  }
+
+  .record__covers {
+    flex: 1;
+  }
+
+  .record__details {
+    flex: 1;
+    margin-left: 2rem;
+  }
+
+  .record_artist {
+    margin: 0;
+  }
+}

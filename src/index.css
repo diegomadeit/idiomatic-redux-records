@@ -1,23 +1,29 @@
 :root {
   --color-bg: #222;
+  --color-text: #fff;
+  --color-header: #fff;
+  --color-white: #fff;
 }
+
 body {
-  margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+p {
+  text-align: justify;
 }
 
 .content {
   max-width: 1200px;
   margin: 2rem auto;
+}
+
+.row {
+  margin-bottom: 2rem;
 }

@@ -40,8 +40,8 @@ const Record = ({ release }) => (
           ))}
       </ul>
       <p>
-        {release.year ? `Released in ${release.year}. ` : ""}
-        {release.labels ? `${release.labels[0].name}.` : ""}
+        {release.year ? `Released in ${release.year} - ` : ""}
+        {release.labels ? `${release.labels[0].name}` : ""}
       </p>
     </article>
   </div>

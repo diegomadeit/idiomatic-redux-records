@@ -1,7 +1,6 @@
 .record {
   display: flex;
   flex-direction: column;
-  color: #fff;
 }
 
 .record__cover {
@@ -43,7 +42,7 @@
 
 .record__song {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid var(--color-white);
 }
 
 @media (min-width: 768px) {

@@ -1,5 +1,5 @@
 .record {
-  color: #fff;
+  color: var(--color-text);
 }
 
 .record__figure {
@@ -48,7 +48,7 @@
   position: absolute;
   height: 2px;
   width: 1.6rem;
-  background: #fff;
+  background: var(--color-white);
   left: 0;
   top: 45%;
 }

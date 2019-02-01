@@ -12,7 +12,7 @@
 }
 
 .header__heading {
-  color: #fff;
+  color: var(--color-header);
   font-size: 5vmin;
 }
 

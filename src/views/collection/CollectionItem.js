@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { fetchRecord, fetchArtist } from "../../data/api/records";
 import Record from "../../components/record/Record";
 import Artist from "../../components/artist/Artist";
+import HoverLink from "../../components/common/HoverLink";
 
 class CollectionItem extends Component {
   state = { release: {}, artist: {} };
@@ -28,9 +28,15 @@ class CollectionItem extends Component {
       <>
         <div className="row">{release && <Record release={release} />}</div>
         <div className="row">{artist && <Artist artist={artist} />}</div>
-        <Link to={collectionPath} className="item">
-          back
-        </Link>
+        <div className="row">
+          <HoverLink
+            to={collectionPath}
+            className="button"
+            hoverClass="button--hover"
+          >
+            <span>Back to collection</span>
+          </HoverLink>
+        </div>
       </>
     );
   }

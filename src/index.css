@@ -27,3 +27,21 @@ p {
 .row {
   margin-bottom: 2rem;
 }
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.button {
+  background-color: #007bff;
+  padding: 1rem 2rem;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.button--hover {
+  background-color: #0069d9;
+}

@@ -9,12 +9,12 @@ class HoverLink extends Component {
   mouseOut = () => this.setState({ hovering: false });
 
   render() {
-    const { to, children, hoverClass } = this.props;
+    const { to, children, hoverClass, className = "" } = this.props;
     const { hovering } = this.state;
 
     return (
       <div
-        className={`${styles.link} ${hovering ? hoverClass : ""}`}
+        className={`${className} ${hovering ? hoverClass : ""}`}
         onMouseOver={this.mouseOver}
         onMouseOut={this.mouseOut}
       >

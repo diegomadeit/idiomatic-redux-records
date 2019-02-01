@@ -3,7 +3,11 @@ import HoverLink from "../common/HoverLink";
 import styles from "./RecordThumbnail.module.css";
 
 const RecordThumbnail = ({ basic_information }) => (
-  <HoverLink to={`records/${basic_information.id}`} hoverClass={styles.hover}>
+  <HoverLink
+    to={`records/${basic_information.id}`}
+    className={styles.record__thumbnail}
+    hoverClass={styles["record__thumbnail--hover"]}
+  >
     <article className={styles.record}>
       <figure className={styles.record__figure}>
         <img

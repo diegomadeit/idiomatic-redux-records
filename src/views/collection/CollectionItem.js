@@ -5,29 +5,27 @@ import Artist from "../../components/artist/Artist";
 import HoverLink from "../../components/common/HoverLink";
 
 class CollectionItem extends Component {
-  state = { release: {}, artist: {} };
+  state = { release: {}, artist: {}, loaded: false };
 
   componentDidMount() {
     const { match } = this.props;
     const { recordId } = match.params;
 
     fetchRecord(recordId).then(release => {
-      release.artists.length
-        ? fetchArtist(release.artists[0].id).then(artist => {
-            this.setState({ release, artist });
-          })
-        : this.setState({ release });
+      fetchArtist(release.artists[0].id).then(artist => {
+        this.setState({ release, artist, loaded: true });
+      });
     });
   }
 
   render() {
     const { collectionPath } = this.props;
-    const { release, artist } = this.state;
+    const { release, artist, loaded } = this.state;
 
-    return (
+    return loaded ? (
       <>
-        <div className="row">{release && <Record release={release} />}</div>
-        <div className="row">{artist && <Artist artist={artist} />}</div>
+        <div className="row">{<Record release={release} />}</div>
+        <div className="row">{<Artist artist={artist} />}</div>
         <div className="row">
           <HoverLink
             to={collectionPath}
@@ -38,6 +36,8 @@ class CollectionItem extends Component {
           </HoverLink>
         </div>
       </>
+    ) : (
+      <div>Loading</div>
     );
   }
 }

@@ -4,10 +4,9 @@ import styles from "./RecordList.module.css";
 
 const RecordList = ({ releases }) => (
   <div className={styles.records}>
-    {releases &&
-      releases.map(release => (
-        <RecordThumbnail key={release.id} {...release} />
-      ))}
+    {releases.map(release => (
+      <RecordThumbnail key={release.id} {...release} />
+    ))}
   </div>
 );
 export default RecordList;

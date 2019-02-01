@@ -5,22 +5,16 @@ import CollectionList from "./CollectionList";
 import CollectionItem from "./CollectionItem";
 
 class Collection extends Component {
-  state = { releases: [], pagination: {} };
+  state = { releases: [], pagination: {}, loaded: false };
 
   componentDidMount() {
     fetchRecords().then(({ releases, pagination }) => {
-      this.setState({ releases, pagination });
+      this.setState({ releases, pagination, loaded: true });
     });
   }
 
-  getRelease = id => {
-    return this.state.releases.find(
-      release => release.id === Number.parseInt(id)
-    );
-  };
-
   render() {
-    const { releases, pagination } = this.state;
+    const { releases, pagination, loaded } = this.state;
     const { match } = this.props;
 
     return (
@@ -28,20 +22,18 @@ class Collection extends Component {
         <Route
           path={`${match.path}/:recordId`}
           render={props => {
-            const { recordId } = props.match.params;
-            const release = this.getRelease(recordId);
-            return (
-              <CollectionItem
-                release={release}
-                collectionPath={match.path}
-                {...props}
-              />
-            );
+            return <CollectionItem collectionPath={match.path} {...props} />;
           }}
         />
         <Route
           path={`${match.path}`}
-          render={props => <CollectionList releases={releases} {...props} />}
+          render={props =>
+            loaded ? (
+              <CollectionList releases={releases} {...props} />
+            ) : (
+              <div>Loading</div>
+            )
+          }
         />
       </Switch>
     );

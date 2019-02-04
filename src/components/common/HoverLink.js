@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import styles from "./HoverLink.module.css";
 
 class HoverLink extends Component {
   state = { hovering: false };

@@ -3,6 +3,7 @@ import { fetchRecord, fetchArtist } from "../../data/api/records";
 import Record from "../../components/record/Record";
 import Artist from "../../components/artist/Artist";
 import HoverLink from "../../components/common/HoverLink";
+import Loader from "../../components/common/Loader";
 
 class CollectionItem extends Component {
   state = { release: {}, artist: {}, loaded: false };
@@ -37,7 +38,7 @@ class CollectionItem extends Component {
         </div>
       </>
     ) : (
-      <div>Loading</div>
+      <Loader />
     );
   }
 }

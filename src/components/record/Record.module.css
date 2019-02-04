@@ -42,7 +42,7 @@
 
 .record__song {
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-white);
+  border-bottom: 1px solid var(--color-black);
 }
 
 @media (min-width: 768px) {

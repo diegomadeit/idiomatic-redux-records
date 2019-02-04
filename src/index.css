@@ -1,8 +1,10 @@
 :root {
-  --color-bg: #222;
-  --color-text: #fff;
-  --color-header: #fff;
+  --color-bg: #fff;
+  --color-text: #222;
+  --color-header: #222;
   --color-white: #fff;
+  --color-black: #222;
+  --color-gray: #666;
 }
 
 body {
@@ -31,11 +33,11 @@ p {
 a {
   outline: none;
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--color-white);
 }
 
 .button {
-  background-color: #007bff;
+  background-color: var(--color-black);
   padding: 1rem 2rem;
   text-align: center;
   display: inline-block;
@@ -43,5 +45,5 @@ a {
 }
 
 .button--hover {
-  background-color: #0069d9;
+  background-color: var(--color-gray);
 }

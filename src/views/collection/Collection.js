@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { fetchRecords } from "../../data/api/records";
 import CollectionList from "./CollectionList";
 import CollectionItem from "./CollectionItem";
+import Loader from "../../components/common/Loader";
 
 class Collection extends Component {
   state = { releases: [], pagination: {}, loaded: false };
@@ -31,7 +32,7 @@ class Collection extends Component {
             loaded ? (
               <CollectionList releases={releases} {...props} />
             ) : (
-              <div>Loading</div>
+              <Loader />
             )
           }
         />

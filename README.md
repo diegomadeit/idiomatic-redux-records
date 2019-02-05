@@ -25,6 +25,7 @@ Image requests to the Discogs API require authentication. To be able to see reco
 In the project directory, you can run:
 
 ```sh
+$ npm install
 $ npm start
 ```
 

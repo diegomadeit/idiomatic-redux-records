@@ -2,7 +2,7 @@
 
 ### Overview
 
-This is the first of a series of projects. My goal is to learn how to build reliable React apps, using React and many of the tools in its ecosystem.
+This is the first of a series of projects. My goal is to learn how to build reliable React apps using React and many of the tools in its ecosystem.
 
 ### The project
 

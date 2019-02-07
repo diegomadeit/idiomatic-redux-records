@@ -1,22 +1,19 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { fetchRecords } from "../../data/api/records";
 import CollectionList from "./CollectionList";
 import CollectionItem from "./CollectionItem";
 import Loader from "../../components/common/Loader";
 
 class Collection extends Component {
-  state = { releases: [], pagination: {}, loaded: false };
+  state = { loaded: false };
 
   componentDidMount() {
-    fetchRecords().then(({ releases, pagination }) => {
-      this.setState({ releases, pagination, loaded: true });
-    });
+    this.setState({ loaded: true });
   }
 
   render() {
-    const { releases, pagination, loaded } = this.state;
-    const { match } = this.props;
+    const { loaded } = this.state;
+    const { match, pagination, releases } = this.props;
 
     return (
       <Switch>

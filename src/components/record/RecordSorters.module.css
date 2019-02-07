@@ -1,0 +1,9 @@
+.sorters {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.sorters__type {
+  margin: 0 1rem 0 0;
+}

@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import withRouter from "./containers/withRouter";
-import Collection from "./views/collection/Collection";
+import SortedCollection from "./containers/SortedCollection";
 
 export const Routes = props => (
   <Switch>
-    <Route path="/records" render={props => <Collection {...props} />} />
+    <Route path="/records" render={props => <SortedCollection {...props} />} />
     <Route exact path="/" render={() => <Redirect to="/records" />} />
   </Switch>
 );

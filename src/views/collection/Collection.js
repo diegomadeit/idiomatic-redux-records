@@ -13,14 +13,21 @@ class Collection extends Component {
 
   render() {
     const { loaded } = this.state;
-    const { match, pagination, releases } = this.props;
+    const { match, pagination, releases, release, artist } = this.props;
 
     return (
       <Switch>
         <Route
           path={`${match.path}/:recordId`}
           render={props => {
-            return <CollectionItem collectionPath={match.path} {...props} />;
+            return (
+              <CollectionItem
+                collectionPath={match.path}
+                release={release}
+                artist={artist}
+                {...props}
+              />
+            );
           }}
         />
         <Route

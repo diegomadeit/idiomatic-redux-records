@@ -1,27 +1,19 @@
 import React, { Component } from "react";
-import { fetchRecord, fetchArtist } from "../../data/api/records";
 import Record from "../../components/record/Record";
 import Artist from "../../components/artist/Artist";
 import HoverLink from "../../components/common/HoverLink";
 import Loader from "../../components/common/Loader";
 
 class CollectionItem extends Component {
-  state = { release: {}, artist: {}, loaded: false };
+  state = { loaded: false };
 
   componentDidMount() {
-    const { match } = this.props;
-    const { recordId } = match.params;
-
-    fetchRecord(recordId).then(release => {
-      fetchArtist(release.artists[0].id).then(artist => {
-        this.setState({ release, artist, loaded: true });
-      });
-    });
+    this.setState({ loaded: true });
   }
 
   render() {
-    const { collectionPath } = this.props;
-    const { release, artist, loaded } = this.state;
+    const { collectionPath, release, artist } = this.props;
+    const { loaded } = this.state;
 
     return loaded ? (
       <>

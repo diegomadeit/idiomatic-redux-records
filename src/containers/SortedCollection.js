@@ -24,7 +24,12 @@ const getSortedReleases = (releases, sorter) => {
 
 const mapStateToProps = state => ({
   pagination: state.collection.pagination,
-  releases: getSortedReleases(state.collection.releases, state.collectionSorter)
+  releases: getSortedReleases(
+    state.collection.releases,
+    state.collectionSorter
+  ),
+  release: state.release,
+  artist: state.artist
 });
 
 const SortedCollection = connect(mapStateToProps)(Collection);

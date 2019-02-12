@@ -2,31 +2,13 @@ import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
 import { SortTypes } from "../actions/sorting";
 
-const compareReleaseArtist = (release1, release2) => {
-  if (
-    release1.basic_information.artists[0].name >
+const compareReleaseArtist = (release1, release2) =>
+  release1.basic_information.artists[0].name.localeCompare(
     release2.basic_information.artists[0].name
-  ) {
-    return 1;
-  }
-  if (
-    release1.basic_information.artists[0].name <
-    release2.basic_information.artists[0].name
-  ) {
-    return -1;
-  }
-  return 0;
-};
+  );
 
-const compareReleaseYear = (release1, release2) => {
-  if (release1.basic_information.year > release2.basic_information.year) {
-    return 1;
-  }
-  if (release1.basic_information.year < release2.basic_information.year) {
-    return -1;
-  }
-  return 0;
-};
+const compareReleaseYear = (release1, release2) =>
+  release1.basic_information.year - release2.basic_information.year;
 
 const getSortedReleases = (releases, sorter) => {
   switch (sorter) {

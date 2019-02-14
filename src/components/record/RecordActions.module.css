@@ -1,0 +1,20 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.actions__sorter {
+  margin: 0 1rem 0 0;
+}
+
+.actions__search {
+  margin: 2rem 0;
+}
+
+@media (min-width: 430px) {
+  .actions__search {
+    margin: 0 0 0 auto;
+  }
+}

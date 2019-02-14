@@ -1,0 +1,5 @@
+.input {
+  border: 0;
+  border-bottom: 2px solid var(--color-black);
+  padding: 0 0 1rem 0;
+}

@@ -1,10 +1,10 @@
 import React from "react";
 import RecordList from "../../components/record/RecordList";
-import RecordSorters from "../../components/record/RecordSorters";
+import RecordActions from "../../components/record/RecordActions";
 
 const CollectionList = ({ releases }) => (
   <div className="row">
-    <RecordSorters />
+    <RecordActions />
     <RecordList releases={releases} />
   </div>
 );

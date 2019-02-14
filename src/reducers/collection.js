@@ -1,5 +1,3 @@
-import sampleCollection from "../data/local/sampleCollection";
-
-const collection = (state = sampleCollection, action) => state;
+const collection = (state = { pagination: {}, releases: [] }, action) => state;
 
 export default collection;

@@ -1,5 +1,3 @@
-import sampleArtist from "../data/local/sampleArtist";
-
-const artist = (state = sampleArtist, action) => state;
+const artist = (state = {}, action) => state;
 
 export default artist;

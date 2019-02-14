@@ -12,7 +12,10 @@ Image requests to the Discogs API require authentication. To be able to see reco
 
 ### Covered concepts
 
-- ...
+- Add Redux to a React application
+- Manage the state of the Redux store
+- Reducer Composition with combineReducers()
+- Generate Containers with connect()
 
 ### Run the project
 

@@ -18,7 +18,7 @@ class Collection extends Component {
     return (
       <Switch>
         <Route
-          path={`${match.path}/:recordId`}
+          path={`${match.path}/release/:recordId`}
           render={props => {
             return (
               <CollectionItem

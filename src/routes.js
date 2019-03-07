@@ -5,6 +5,10 @@ import VisibleCollection from "./containers/VisibleCollection";
 
 export const Routes = props => (
   <Switch>
+    <Route
+      path="/records/sort/:sortType"
+      render={props => <VisibleCollection {...props} />}
+    />
     <Route path="/records" render={props => <VisibleCollection {...props} />} />
     <Route exact path="/" render={() => <Redirect to="/records" />} />
   </Switch>

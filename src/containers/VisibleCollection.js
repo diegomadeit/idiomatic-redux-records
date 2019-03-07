@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
-import { SortTypes } from "../actions/sorting";
+import { SortTypes } from "../utils/sorting";
 
 const compareReleaseArtist = (release1, release2) =>
   release1.basic_information.artists[0].name.localeCompare(
@@ -35,17 +35,16 @@ const getSortedReleases = (artistReleases, sorter) => {
       return artistReleases.sort((r1, r2) => compareReleaseArtist(r1, r2));
     case SortTypes.BY_YEAR:
       return artistReleases.sort((r1, r2) => compareReleaseYear(r1, r2));
-    case SortTypes.DEFAULT:
     default:
       return artistReleases;
   }
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   pagination: state.collection.pagination,
   releases: getVisibleReleases(
     state.collection.releases,
-    state.collectionSorter,
+    ownProps.match.params.sortType,
     state.collectionArtistSearch
   ),
   release: state.release,

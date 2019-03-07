@@ -1,0 +1,15 @@
+.link {
+  color: var(--color-black);
+  padding: 0 0 1rem 0;
+  border-bottom: 2px solid var(--color-white);
+}
+
+.link:hover,
+.link:focus {
+  border-bottom: 2px solid var(--color-black);
+}
+
+.link--active {
+  color: var(--color-gray);
+  border-bottom: 2px solid var(--color-black);
+}

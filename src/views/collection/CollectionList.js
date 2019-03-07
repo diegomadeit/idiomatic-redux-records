@@ -1,16 +1,18 @@
 import React from "react";
 import RecordList from "../../components/record/RecordList";
 import RecordActions from "../../components/record/RecordActions";
+import VisitedRecordList from "../../components/record/VisitedRecordList";
 
 const CollectionList = ({ releases }) => (
-  <div className="row">
-    <RecordActions />
-    {!!releases.length ? (
+  <>
+    <div className="row">
+      <RecordActions />
       <RecordList releases={releases} />
-    ) : (
-      <p>Artist not found in the collection.</p>
-    )}
-  </div>
+    </div>
+    <div className="row">
+      <VisitedRecordList releases={releases} />
+    </div>
+  </>
 );
 
 export default CollectionList;

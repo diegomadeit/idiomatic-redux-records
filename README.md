@@ -12,7 +12,7 @@ Image requests to the Discogs API require authentication. To be able to see reco
 
 ### Covered concepts
 
-- ...
+- Filter Redux State with React Router Params
 
 ### Run the project
 

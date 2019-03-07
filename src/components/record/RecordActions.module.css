@@ -13,7 +13,7 @@
   margin: 2rem 0;
 }
 
-@media (min-width: 430px) {
+@media (min-width: 300px) {
   .actions__search {
     margin: 0 0 0 auto;
   }

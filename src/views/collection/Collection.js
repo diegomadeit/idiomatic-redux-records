@@ -13,7 +13,15 @@ class Collection extends Component {
 
   render() {
     const { loaded } = this.state;
-    const { match, pagination, releases, release, artist } = this.props;
+    const {
+      match,
+      pagination,
+      releases,
+      release,
+      artist,
+      addToVisited,
+      visitedReleases
+    } = this.props;
 
     return (
       <Switch>
@@ -25,6 +33,7 @@ class Collection extends Component {
                 collectionPath={match.path}
                 release={release}
                 artist={artist}
+                addToVisited={addToVisited}
                 {...props}
               />
             );
@@ -34,7 +43,11 @@ class Collection extends Component {
           path={`${match.path}`}
           render={props =>
             loaded ? (
-              <CollectionList releases={releases} {...props} />
+              <CollectionList
+                releases={releases}
+                visitedReleases={visitedReleases}
+                {...props}
+              />
             ) : (
               <Loader />
             )

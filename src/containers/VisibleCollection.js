@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
 import { SortTypes } from "../utils/sorting";
+import { visitRelease } from "../actions/visitRelease";
 
 const compareReleaseArtist = (release1, release2) =>
   release1.basic_information.artists[0].name.localeCompare(
@@ -48,9 +49,17 @@ const mapStateToProps = (state, ownProps) => ({
     state.collectionArtistSearch
   ),
   release: state.release,
-  artist: state.artist
+  artist: state.artist,
+  visitedReleases: state.visitedReleases
 });
 
-const VisibleCollection = connect(mapStateToProps)(Collection);
+const mapDispatchToProps = dispatch => ({
+  addToVisited: releaseId => dispatch(visitRelease(releaseId))
+});
+
+const VisibleCollection = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Collection);
 
 export default VisibleCollection;

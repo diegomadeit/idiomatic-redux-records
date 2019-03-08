@@ -8,6 +8,9 @@ class CollectionItem extends Component {
   state = { loaded: false };
 
   componentDidMount() {
+    const { match, addToVisited } = this.props;
+    addToVisited(match.params.recordId);
+
     this.setState({ loaded: true });
   }
 

@@ -1,17 +1,23 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import withRouter from "./containers/withRouter";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import VisibleCollection from "./containers/VisibleCollection";
 
-export const Routes = props => (
-  <Switch>
-    <Route
-      path="/records/sort/:sortType"
-      render={props => <VisibleCollection {...props} />}
-    />
-    <Route path="/records" render={props => <VisibleCollection {...props} />} />
-    <Route exact path="/" render={() => <Redirect to="/records" />} />
-  </Switch>
+export const Routes = () => (
+  <Router>
+    <Switch>
+      <Route
+        path="/records/sort/:sortType"
+        render={() => <VisibleCollection />}
+      />
+      <Route path="/records" render={() => <VisibleCollection />} />
+      <Route exact path="/" render={() => <Redirect to="/records" />} />
+    </Switch>
+  </Router>
 );
 
-export default withRouter(Routes);
+export default Routes;

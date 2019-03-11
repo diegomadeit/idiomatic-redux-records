@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
 import { SortTypes } from "../utils/sorting";
 import { visitRelease } from "../actions/visitRelease";
+import { withRouter } from "react-router";
 
 const compareReleaseArtist = (release1, release2) =>
   release1.basic_information.artists[0].name.localeCompare(
@@ -41,11 +42,11 @@ const getSortedReleases = (artistReleases, sorter) => {
   }
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, { match }) => ({
   pagination: state.collection.pagination,
   releases: getVisibleReleases(
     state.collection.releases,
-    ownProps.match.params.sortType,
+    match.params.sortType,
     state.collectionArtistSearch
   ),
   release: state.release,
@@ -57,9 +58,11 @@ const mapDispatchToProps = dispatch => ({
   addToVisited: releaseId => dispatch(visitRelease(releaseId))
 });
 
-const VisibleCollection = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Collection);
+const VisibleCollection = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Collection)
+);
 
 export default VisibleCollection;

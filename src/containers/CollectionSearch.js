@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import { searchArtist } from "../actions/search";
 import RecordSearch from "../components/record/RecordSearch";
+import { getCollectionArtistSearch } from "../reducers";
+
+const mapStateToProps = state => ({
+  searchArtist: getCollectionArtistSearch(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: event => {
@@ -11,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const CollectionSearch = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(RecordSearch);
 

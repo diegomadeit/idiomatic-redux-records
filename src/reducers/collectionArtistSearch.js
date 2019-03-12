@@ -10,3 +10,7 @@ const collectionArtistSearch = (state = "", action) => {
 };
 
 export default collectionArtistSearch;
+
+export const getCollectionArtistSearch = state => {
+  return state;
+};

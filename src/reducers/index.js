@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import collection, * as collectionSelectors from "./collection";
-import collectionArtistSearch from "./collectionArtistSearch";
+import collectionArtistSearch, * as collectionArtistSearchSelectors from "./collectionArtistSearch";
 import release, * as releaseSelectors from "./release";
 import artist, * as artistSelectors from "./artist";
 import visitedReleases, * as visitedReleasesSelectors from "./visitedReleases";
@@ -29,3 +29,8 @@ export const getArtist = state => artistSelectors.getArtist(state.artist);
 
 export const getVisitedReleases = state =>
   visitedReleasesSelectors.getVisitedReleases(state.visitedReleases);
+
+export const getCollectionArtistSearch = state =>
+  collectionArtistSearchSelectors.getCollectionArtistSearch(
+    state.collectionArtistSearch
+  );

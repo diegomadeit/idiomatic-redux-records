@@ -1,45 +1,16 @@
-import { SortTypes } from "../utils/sorting";
+import { combineReducers } from "redux";
+import pagination, * as paginationSelectors from "./pagination";
+import releases, * as releasesSelectors from "./releases";
 
-const collection = (state = { pagination: {}, releases: [] }, action) => state;
+const collection = combineReducers({
+  pagination,
+  releases
+});
 
 export default collection;
 
-export const getVisibleReleases = (state, sorter, searchArtist) => {
-  const artistReleases = getArtistReleases(state.releases, searchArtist);
-  return getSortedReleases(artistReleases, sorter);
-};
+export const getVisibleReleases = (state, sorter, searchArtist) =>
+  releasesSelectors.getVisibleReleases(state.releases, sorter, searchArtist);
 
-export const getPaginationReleases = state => {
-  return state.pagination;
-};
-
-const getArtistReleases = (releases, searchArtist) => {
-  return searchArtist ? searchArtistReleases(releases, searchArtist) : releases;
-};
-
-const searchArtistReleases = (releases, searchArtist) =>
-  releases.filter(
-    release =>
-      release.basic_information.artists[0].name
-        .toUpperCase()
-        .search(searchArtist.toUpperCase()) !== -1
-  );
-
-const getSortedReleases = (artistReleases, sorter) => {
-  switch (sorter) {
-    case SortTypes.BY_ARTIST:
-      return artistReleases.sort((r1, r2) => compareReleaseArtist(r1, r2));
-    case SortTypes.BY_YEAR:
-      return artistReleases.sort((r1, r2) => compareReleaseYear(r1, r2));
-    default:
-      return artistReleases;
-  }
-};
-
-const compareReleaseArtist = (release1, release2) =>
-  release1.basic_information.artists[0].name.localeCompare(
-    release2.basic_information.artists[0].name
-  );
-
-const compareReleaseYear = (release1, release2) =>
-  release1.basic_information.year - release2.basic_information.year;
+export const getPagination = state =>
+  paginationSelectors.getPagination(state.pagination);

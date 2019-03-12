@@ -3,7 +3,7 @@ import Collection from "../views/collection/Collection";
 import { visitRelease } from "../actions/visitRelease";
 import { withRouter } from "react-router";
 import {
-  getPaginationReleases,
+  getPagination,
   getVisibleReleases,
   getRelease,
   getArtist,
@@ -11,7 +11,7 @@ import {
 } from "../reducers";
 
 const mapStateToProps = (state, { match }) => ({
-  pagination: getPaginationReleases(state),
+  pagination: getPagination(state),
   releases: getVisibleReleases(state, match.params.sortType),
   release: getRelease(state),
   artist: getArtist(state),

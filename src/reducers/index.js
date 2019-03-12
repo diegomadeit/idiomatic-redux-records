@@ -20,8 +20,8 @@ export const getVisibleReleases = (state, sorter) =>
     state.collectionArtistSearch
   );
 
-export const getPaginationReleases = state =>
-  collectionSelectors.getPaginationReleases(state.collection);
+export const getPagination = state =>
+  collectionSelectors.getPagination(state.collection);
 
 export const getRelease = state => releaseSelectors.getRelease(state.release);
 

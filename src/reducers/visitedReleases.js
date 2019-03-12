@@ -22,3 +22,7 @@ const visitedReleases = (state = [], action) => {
 };
 
 export default visitedReleases;
+
+export const getVisitedReleases = state => {
+  return state;
+};

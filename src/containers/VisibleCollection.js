@@ -1,57 +1,21 @@
 import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
-import { SortTypes } from "../utils/sorting";
 import { visitRelease } from "../actions/visitRelease";
 import { withRouter } from "react-router";
-
-const compareReleaseArtist = (release1, release2) =>
-  release1.basic_information.artists[0].name.localeCompare(
-    release2.basic_information.artists[0].name
-  );
-
-const compareReleaseYear = (release1, release2) =>
-  release1.basic_information.year - release2.basic_information.year;
-
-const searchArtistReleases = (releases, searchArtist) =>
-  releases.filter(
-    release =>
-      release.basic_information.artists[0].name
-        .toUpperCase()
-        .search(searchArtist.toUpperCase()) !== -1
-  );
-
-const getVisibleReleases = (releases, sorter, searchArtist) => {
-  const artistReleases = getArtistReleases(releases, searchArtist);
-  return getSortedReleases(artistReleases, sorter);
-};
-
-const getArtistReleases = (releases, searchArtist) => {
-  return searchArtist
-    ? searchArtistReleases(releases, searchArtist)
-    : [...releases];
-};
-
-const getSortedReleases = (artistReleases, sorter) => {
-  switch (sorter) {
-    case SortTypes.BY_ARTIST:
-      return artistReleases.sort((r1, r2) => compareReleaseArtist(r1, r2));
-    case SortTypes.BY_YEAR:
-      return artistReleases.sort((r1, r2) => compareReleaseYear(r1, r2));
-    default:
-      return artistReleases;
-  }
-};
+import {
+  getPaginationReleases,
+  getVisibleReleases,
+  getRelease,
+  getArtist,
+  getVisitedReleases
+} from "../reducers";
 
 const mapStateToProps = (state, { match }) => ({
-  pagination: state.collection.pagination,
-  releases: getVisibleReleases(
-    state.collection.releases,
-    match.params.sortType,
-    state.collectionArtistSearch
-  ),
-  release: state.release,
-  artist: state.artist,
-  visitedReleases: state.visitedReleases
+  pagination: getPaginationReleases(state),
+  releases: getVisibleReleases(state, match.params.sortType),
+  release: getRelease(state),
+  artist: getArtist(state),
+  visitedReleases: getVisitedReleases(state)
 });
 
 const mapDispatchToProps = dispatch => ({

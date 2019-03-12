@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import collection from "./collection";
+import collection, * as collectionSelectors from "./collection";
 import collectionArtistSearch from "./collectionArtistSearch";
-import release from "./release";
-import artist from "./artist";
-import visitedReleases from "./visitedReleases";
+import release, * as releaseSelectors from "./release";
+import artist, * as artistSelectors from "./artist";
+import visitedReleases, * as visitedReleasesSelectors from "./visitedReleases";
 
 export default combineReducers({
   collection,
@@ -12,3 +12,20 @@ export default combineReducers({
   artist,
   visitedReleases
 });
+
+export const getVisibleReleases = (state, sorter) =>
+  collectionSelectors.getVisibleReleases(
+    state.collection,
+    sorter,
+    state.collectionArtistSearch
+  );
+
+export const getPaginationReleases = state =>
+  collectionSelectors.getPaginationReleases(state.collection);
+
+export const getRelease = state => releaseSelectors.getRelease(state.release);
+
+export const getArtist = state => artistSelectors.getArtist(state.artist);
+
+export const getVisitedReleases = state =>
+  visitedReleasesSelectors.getVisitedReleases(state.visitedReleases);

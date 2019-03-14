@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { searchArtist } from "../actions/search";
+import { searchArtist } from "../actions";
 import RecordSearch from "../components/record/RecordSearch";
 import { getCollectionArtistSearch } from "../reducers";
 

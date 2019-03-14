@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
-import { visitRelease } from "../actions/visitRelease";
+import { visitRelease } from "../actions";
 import { withRouter } from "react-router";
 import {
   getPagination,

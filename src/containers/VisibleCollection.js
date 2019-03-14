@@ -1,6 +1,7 @@
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
-import { visitRelease } from "../actions";
+import * as actions from "../actions";
 import { withRouter } from "react-router";
 import {
   getPagination,
@@ -9,6 +10,22 @@ import {
   getArtist,
   getVisitedReleases
 } from "../reducers";
+import { fetchRecords } from "../data/api/records";
+
+class VisibleCollection extends Component {
+  componentDidMount() {
+    const { receiveCollection } = this.props;
+
+    fetchRecords().then(collection => {
+      receiveCollection(collection);
+    });
+  }
+
+  render() {
+    const { visitRelease, ...rest } = this.props;
+    return <Collection {...rest} addToVisited={visitRelease} />;
+  }
+}
 
 const mapStateToProps = (state, { match }) => ({
   pagination: getPagination(state),
@@ -18,15 +35,11 @@ const mapStateToProps = (state, { match }) => ({
   visitedReleases: getVisitedReleases(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-  addToVisited: releaseId => dispatch(visitRelease(releaseId))
-});
-
-const VisibleCollection = withRouter(
+VisibleCollection = withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  )(Collection)
+    actions
+  )(VisibleCollection)
 );
 
 export default VisibleCollection;

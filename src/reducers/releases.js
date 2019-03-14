@@ -1,6 +1,14 @@
 import { SortTypes } from "../utils/sorting";
+import { ActionTypes } from "../actions";
 
-const releases = (state = [], action) => state;
+const releases = (state = [], action) => {
+  switch (action.type) {
+    case ActionTypes.RECEIVE_COLLECTION:
+      return action.releases;
+    default:
+      return state;
+  }
+};
 
 export default releases;
 

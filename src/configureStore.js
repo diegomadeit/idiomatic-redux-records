@@ -1,6 +1,5 @@
 import { createStore } from "redux";
 import rootReducer from "./reducers";
-import sampleCollection from "./data/local/sampleCollection";
 import sampleRelease from "./data/local/sampleRelease";
 import sampleArtist from "./data/local/sampleArtist";
 import { loadLocalState, saveLocalState } from "./localStorage";
@@ -11,7 +10,6 @@ const configureStore = () => {
 
   const persistedState = {
     ...localState,
-    collection: sampleCollection,
     release: sampleRelease,
     artist: sampleArtist
   };

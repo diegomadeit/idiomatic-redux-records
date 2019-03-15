@@ -2,23 +2,17 @@ import React, { Component } from "react";
 import Record from "../../components/record/Record";
 import Artist from "../../components/artist/Artist";
 import HoverLink from "../../components/common/HoverLink";
-import Loader from "../../components/common/Loader";
 
 class CollectionItem extends Component {
-  state = { loaded: false };
-
   componentDidMount() {
     const { match, addToVisited } = this.props;
     addToVisited(match.params.recordId);
-
-    this.setState({ loaded: true });
   }
 
   render() {
     const { collectionPath, release, artist } = this.props;
-    const { loaded } = this.state;
 
-    return loaded ? (
+    return (
       <>
         <div className="row">{<Record release={release} />}</div>
         <div className="row">{<Artist artist={artist} />}</div>
@@ -32,8 +26,6 @@ class CollectionItem extends Component {
           </HoverLink>
         </div>
       </>
-    ) : (
-      <Loader />
     );
   }
 }

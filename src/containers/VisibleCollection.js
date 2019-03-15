@@ -8,22 +8,27 @@ import {
   getVisibleReleases,
   getRelease,
   getArtist,
-  getVisitedReleases
+  getVisitedReleases,
+  getIsFetching
 } from "../reducers";
-import { fetchRecords } from "../data/api/records";
+import Loader from "../components/common/Loader";
 
 class VisibleCollection extends Component {
   componentDidMount() {
-    const { receiveCollection } = this.props;
+    const { fetchCollection } = this.props;
 
-    fetchRecords().then(collection => {
-      receiveCollection(collection);
-    });
+    fetchCollection();
   }
 
   render() {
-    const { visitRelease, ...rest } = this.props;
-    return <Collection {...rest} addToVisited={visitRelease} />;
+    const { visitRelease, releases, isFetching, ...rest } = this.props;
+
+    if (isFetching && !releases.lenght) {
+      return <Loader />;
+    }
+    return (
+      <Collection {...rest} releases={releases} addToVisited={visitRelease} />
+    );
   }
 }
 
@@ -32,7 +37,8 @@ const mapStateToProps = (state, { match }) => ({
   releases: getVisibleReleases(state, match.params.sortType),
   release: getRelease(state),
   artist: getArtist(state),
-  visitedReleases: getVisitedReleases(state)
+  visitedReleases: getVisitedReleases(state),
+  isFetching: getIsFetching(state)
 });
 
 VisibleCollection = withRouter(

@@ -23,6 +23,9 @@ export const getVisibleReleases = (state, sorter) =>
 export const getPagination = state =>
   collectionSelectors.getPagination(state.collection);
 
+export const getIsFetching = state =>
+  collectionSelectors.getIsFetching(state.collection);
+
 export const getRelease = state => releaseSelectors.getRelease(state.release);
 
 export const getArtist = state => artistSelectors.getArtist(state.artist);

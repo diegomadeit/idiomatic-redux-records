@@ -1,9 +1,10 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
 import sampleRelease from "./data/local/sampleRelease";
 import sampleArtist from "./data/local/sampleArtist";
 import { loadLocalState, saveLocalState } from "./localStorage";
 import throttle from "lodash/throttle";
+import logger from "redux-logger";
 
 const configureStore = () => {
   const localState = loadLocalState();
@@ -14,7 +15,16 @@ const configureStore = () => {
     artist: sampleArtist
   };
 
-  const store = createStore(rootReducer, persistedState);
+  const middlewares = [];
+  if (process.env.NODE_ENV !== "production") {
+    middlewares.push(logger);
+  }
+
+  const store = createStore(
+    rootReducer,
+    persistedState,
+    applyMiddleware(...middlewares)
+  );
 
   store.subscribe(
     throttle(() => {

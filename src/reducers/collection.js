@@ -5,10 +5,23 @@ import { ActionTypes } from "../actions";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case ActionTypes.REQUEST_COLLECTION:
+    case ActionTypes.FETCH_COLLECTION_REQUEST:
       return true;
-    case ActionTypes.RECEIVE_COLLECTION:
+    case ActionTypes.FETCH_COLLECTION_SUCCESS:
+    case ActionTypes.FETCH_COLLECTION_FAILURE:
       return false;
+    default:
+      return state;
+  }
+};
+
+const errorMessageFetch = (state = null, action) => {
+  switch (action.type) {
+    case ActionTypes.FETCH_COLLECTION_FAILURE:
+      return action.message;
+    case ActionTypes.FETCH_COLLECTION_REQUEST:
+    case ActionTypes.FETCH_COLLECTION_SUCCESS:
+      return null;
     default:
       return state;
   }
@@ -17,7 +30,8 @@ const isFetching = (state = false, action) => {
 const collection = combineReducers({
   pagination,
   releases,
-  isFetching
+  isFetching,
+  errorMessageFetch
 });
 
 export default collection;
@@ -29,3 +43,5 @@ export const getPagination = state =>
   paginationSelectors.getPagination(state.pagination);
 
 export const getIsFetching = state => state.isFetching;
+
+export const getErrorMessageFetch = state => state.errorMessageFetch;

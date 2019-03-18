@@ -3,7 +3,7 @@ import { ActionTypes } from "../actions";
 
 const releases = (state = [], action) => {
   switch (action.type) {
-    case ActionTypes.RECEIVE_COLLECTION:
+    case ActionTypes.FETCH_COLLECTION_SUCCESS:
       return action.releases;
     default:
       return state;

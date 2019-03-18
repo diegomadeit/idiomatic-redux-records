@@ -26,6 +26,9 @@ export const getPagination = state =>
 export const getIsFetching = state =>
   collectionSelectors.getIsFetching(state.collection);
 
+export const getErrorMessageFetch = state =>
+  collectionSelectors.getErrorMessageFetch(state.collection);
+
 export const getRelease = state => releaseSelectors.getRelease(state.release);
 
 export const getArtist = state => artistSelectors.getArtist(state.artist);

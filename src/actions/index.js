@@ -3,8 +3,9 @@ import * as api from "../data/api/records";
 export const ActionTypes = {
   SEARCH_ARTIST: "SEARCH_ARTIST",
   VISIT_RELEASE: "VISIT_RELEASE",
-  REQUEST_COLLECTION: "REQUEST_COLLECTION",
-  RECEIVE_COLLECTION: "RECEIVE_COLLECTION"
+  FETCH_COLLECTION_REQUEST: "FETCH_COLLECTION_REQUEST",
+  FETCH_COLLECTION_SUCCESS: "FETCH_COLLECTION_SUCCESS",
+  FETCH_COLLECTION_FAILURE: "FETCH_COLLECTION_FAILURE"
 };
 
 export const searchArtist = artist => ({
@@ -17,20 +18,24 @@ export const visitRelease = releaseId => ({
   releaseId
 });
 
-const requestCollection = () => ({
-  type: ActionTypes.REQUEST_COLLECTION
-});
-
-const receiveCollection = collection => ({
-  type: ActionTypes.RECEIVE_COLLECTION,
-  pagination: collection.pagination,
-  releases: collection.releases
-});
-
 export const fetchCollection = () => (dispatch, getState) => {
-  dispatch(requestCollection());
-
-  return api.fetchRecords().then(collection => {
-    dispatch(receiveCollection(collection));
+  dispatch({
+    type: ActionTypes.FETCH_COLLECTION_REQUEST
   });
+
+  return api.fetchRecords().then(
+    collection => {
+      dispatch({
+        type: ActionTypes.FETCH_COLLECTION_SUCCESS,
+        pagination: collection.pagination,
+        releases: collection.releases
+      });
+    },
+    error => {
+      dispatch({
+        type: ActionTypes.FETCH_COLLECTION_FAILURE,
+        message: error.message || "Something went wrong."
+      });
+    }
+  );
 };

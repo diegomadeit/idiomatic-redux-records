@@ -1,12 +1,12 @@
 .button {
-  background-color: var(--color-white);
-  padding: 0 0 1rem 0;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  padding: 1rem 2rem;
   margin: 0;
   text-align: center;
   display: inline-block;
   cursor: pointer;
   border: 0;
-  border-bottom: 2px solid var(--color-white);
   text-decoration: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -15,7 +15,7 @@
 .button:hover,
 .button:focus,
 .button:disabled {
-  border-bottom: 2px solid var(--color-black);
+  background-color: var(--color-gray);
 }
 
 .button:disabled {

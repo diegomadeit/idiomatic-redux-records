@@ -9,9 +9,11 @@ import {
   getRelease,
   getArtist,
   getVisitedReleases,
-  getIsFetching
+  getIsFetching,
+  getErrorMessageFetch
 } from "../reducers";
 import Loader from "../components/common/Loader";
+import FetchError from "../components/common/FetchError";
 
 class VisibleCollection extends Component {
   componentDidMount() {
@@ -21,11 +23,25 @@ class VisibleCollection extends Component {
   }
 
   render() {
-    const { visitRelease, releases, isFetching, ...rest } = this.props;
+    const {
+      visitRelease,
+      releases,
+      isFetching,
+      errorMessageFetch,
+      fetchCollection,
+      ...rest
+    } = this.props;
 
     if (isFetching && !releases.lenght) {
       return <Loader />;
     }
+
+    if (errorMessageFetch && !releases.lenght) {
+      return (
+        <FetchError message={errorMessageFetch} onRetry={fetchCollection} />
+      );
+    }
+
     return (
       <Collection {...rest} releases={releases} addToVisited={visitRelease} />
     );
@@ -38,7 +54,8 @@ const mapStateToProps = (state, { match }) => ({
   release: getRelease(state),
   artist: getArtist(state),
   visitedReleases: getVisitedReleases(state),
-  isFetching: getIsFetching(state)
+  isFetching: getIsFetching(state),
+  errorMessageFetch: getErrorMessageFetch(state)
 });
 
 VisibleCollection = withRouter(

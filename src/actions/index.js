@@ -13,9 +13,9 @@ export const searchArtist = artist => ({
   artist
 });
 
-export const visitRelease = releaseId => ({
+export const visitRelease = release => ({
   type: ActionTypes.VISIT_RELEASE,
-  releaseId
+  release
 });
 
 export const fetchCollection = () => (dispatch, getState) => {

@@ -5,8 +5,8 @@ import HoverLink from "../../components/common/HoverLink";
 
 class CollectionItem extends Component {
   componentDidMount() {
-    const { match, addToVisited } = this.props;
-    addToVisited(match.params.recordId);
+    const { release, addToVisited } = this.props;
+    addToVisited(release);
   }
 
   render() {

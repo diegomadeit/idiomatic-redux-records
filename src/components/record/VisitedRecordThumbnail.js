@@ -2,9 +2,9 @@ import React from "react";
 import HoverLink from "../common/HoverLink";
 import styles from "./VisitedRecordThumbnail.module.css";
 
-const VisitedRecordThumbnail = ({ basic_information }) => (
+const VisitedRecordThumbnail = ({ release }) => (
   <HoverLink
-    to={`/records/release/${basic_information.id}`}
+    to={`/records/release/${release.id}`}
     className={styles.record__thumbnail}
     hoverClass={styles["record__thumbnail--hover"]}
   >
@@ -12,8 +12,8 @@ const VisitedRecordThumbnail = ({ basic_information }) => (
       <figure className={styles.record__figure}>
         <img
           className={styles.record__img}
-          src={basic_information.cover_image}
-          alt={basic_information.title}
+          src={release.thumb}
+          alt={release.title}
         />
       </figure>
     </article>

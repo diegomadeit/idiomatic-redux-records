@@ -1,19 +1,19 @@
 import { ActionTypes } from "../actions";
 
-const findVisitedIndex = (visitedReleases, releaseId) =>
-  visitedReleases.findIndex(visited => visited === releaseId);
+const findReleaseIndex = (state, releaseId) =>
+  state.findIndex(release => release.id === releaseId);
 
 const visitedReleases = (state = [], action) => {
   switch (action.type) {
     case ActionTypes.VISIT_RELEASE:
-      const visitedIndex = findVisitedIndex(state, action.releaseId);
+      const releaseIndex = findReleaseIndex(state, action.release.id);
 
-      return visitedIndex === -1
-        ? [action.releaseId, ...state]
+      return releaseIndex === -1
+        ? [action.release, ...state]
         : [
-            action.releaseId,
-            ...state.slice(0, visitedIndex),
-            ...state.slice(visitedIndex + 1, state.length)
+            action.release,
+            ...state.slice(0, releaseIndex),
+            ...state.slice(releaseIndex + 1, state.length)
           ];
 
     default:

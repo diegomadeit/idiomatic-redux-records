@@ -1,20 +1,12 @@
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
-import sampleRelease from "./data/local/sampleRelease";
-import sampleArtist from "./data/local/sampleArtist";
 import { loadLocalState, saveLocalState } from "./localStorage";
 import throttle from "lodash/throttle";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
 const configureStore = () => {
-  const localState = loadLocalState();
-
-  const persistedState = {
-    ...localState,
-    release: sampleRelease,
-    artist: sampleArtist
-  };
+  const persistedState = loadLocalState();
 
   const middlewares = [thunk];
   if (process.env.NODE_ENV !== "production") {

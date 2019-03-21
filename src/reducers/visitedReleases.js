@@ -5,7 +5,7 @@ const findReleaseIndex = (state, releaseId) =>
 
 const visitedReleases = (state = [], action) => {
   switch (action.type) {
-    case ActionTypes.VISIT_RELEASE:
+    case ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS:
       const releaseIndex = findReleaseIndex(state, action.release.id);
 
       return releaseIndex === -1

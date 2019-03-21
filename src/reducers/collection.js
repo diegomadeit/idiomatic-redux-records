@@ -3,7 +3,7 @@ import pagination, * as paginationSelectors from "./pagination";
 import releases, * as releasesSelectors from "./releases";
 import { ActionTypes } from "../actions";
 
-const isFetching = (state = false, action) => {
+const fetching = (state = false, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_COLLECTION_REQUEST:
       return true;
@@ -15,7 +15,7 @@ const isFetching = (state = false, action) => {
   }
 };
 
-const errorMessageFetch = (state = null, action) => {
+const errorMessage = (state = null, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_COLLECTION_FAILURE:
       return action.message;
@@ -30,8 +30,8 @@ const errorMessageFetch = (state = null, action) => {
 const collection = combineReducers({
   pagination,
   releases,
-  isFetching,
-  errorMessageFetch
+  fetching,
+  errorMessage
 });
 
 export default collection;
@@ -42,6 +42,6 @@ export const getVisibleReleases = (state, sorter, searchArtist) =>
 export const getPagination = state =>
   paginationSelectors.getPagination(state.pagination);
 
-export const getIsFetching = state => state.isFetching;
+export const isFetching = state => state.fetching;
 
-export const getErrorMessageFetch = state => state.errorMessageFetch;
+export const getErrorMessage = state => state.errorMessage;

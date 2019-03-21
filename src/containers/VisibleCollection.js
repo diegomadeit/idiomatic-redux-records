@@ -4,13 +4,11 @@ import Collection from "../views/collection/Collection";
 import * as actions from "../actions";
 import { withRouter } from "react-router";
 import {
-  getPagination,
-  getVisibleReleases,
-  getRelease,
-  getArtist,
-  getVisitedReleases,
-  getIsFetching,
-  getErrorMessageFetch
+  getCollectionPagination,
+  getCollectionVisibleReleases,
+  isCollectionFetching,
+  getCollectionErrorMessage,
+  getVisitedReleases
 } from "../reducers";
 import Loader from "../components/common/Loader";
 import FetchError from "../components/common/FetchError";
@@ -18,44 +16,36 @@ import FetchError from "../components/common/FetchError";
 class VisibleCollection extends Component {
   componentDidMount() {
     const { fetchCollection } = this.props;
-
     fetchCollection();
   }
 
   render() {
     const {
-      visitRelease,
       releases,
       isFetching,
-      errorMessageFetch,
+      errorMessage,
       fetchCollection,
-      ...rest
+      visitedReleases
     } = this.props;
 
-    if (isFetching && !releases.lenght) {
+    if (isFetching && !releases.length) {
       return <Loader />;
     }
 
-    if (errorMessageFetch && !releases.lenght) {
-      return (
-        <FetchError message={errorMessageFetch} onRetry={fetchCollection} />
-      );
+    if (errorMessage && !releases.length) {
+      return <FetchError message={errorMessage} onRetry={fetchCollection} />;
     }
 
-    return (
-      <Collection {...rest} releases={releases} addToVisited={visitRelease} />
-    );
+    return <Collection releases={releases} visitedReleases={visitedReleases} />;
   }
 }
 
 const mapStateToProps = (state, { match }) => ({
-  pagination: getPagination(state),
-  releases: getVisibleReleases(state, match.params.sortType),
-  release: getRelease(state),
-  artist: getArtist(state),
-  visitedReleases: getVisitedReleases(state),
-  isFetching: getIsFetching(state),
-  errorMessageFetch: getErrorMessageFetch(state)
+  pagination: getCollectionPagination(state),
+  releases: getCollectionVisibleReleases(state, match.params.sortType),
+  isFetching: isCollectionFetching(state),
+  errorMessage: getCollectionErrorMessage(state),
+  visitedReleases: getVisitedReleases(state)
 });
 
 VisibleCollection = withRouter(

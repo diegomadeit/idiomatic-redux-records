@@ -12,7 +12,12 @@ Image requests to the Discogs API require authentication. To be able to see reco
 
 ### Covered concepts
 
+- Use browser localStorage API to persist the State
 - Filter Redux State with React Router Params
+- Use withRouter() to inject the Params into Connected Components
+- Use of Selectors in Reducers
+- The Middleware Chain
+- Dispatch Actions asynchronously with Thunks
 
 ### Run the project
 

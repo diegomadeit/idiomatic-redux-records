@@ -14,29 +14,56 @@ import Loader from "../components/common/Loader";
 import FetchError from "../components/common/FetchError";
 
 class VisibleCollection extends Component {
+  generateParameters = location => {
+    const params = new URLSearchParams(location.search);
+    return params.has("page") ? { query: { page: params.get("page") } } : {};
+  };
+
+  fetchCollectionData = (shouldFetch = true) => {
+    if (shouldFetch) {
+      const { fetchCollection, location } = this.props;
+      const parameters = this.generateParameters(location);
+      fetchCollection(parameters);
+    }
+  };
+
   componentDidMount() {
-    const { fetchCollection } = this.props;
-    fetchCollection();
+    this.fetchCollectionData();
+  }
+
+  componentDidUpdate(prevProps) {
+    const shouldFetch =
+      this.props.location.search !== prevProps.location.search;
+    this.fetchCollectionData(shouldFetch);
   }
 
   render() {
     const {
+      pagination,
       releases,
       isFetching,
       errorMessage,
       fetchCollection,
-      visitedReleases
+      visitedReleases,
+      collectionPath
     } = this.props;
 
-    if (isFetching && !releases.length) {
+    if (isFetching) {
       return <Loader />;
     }
 
-    if (errorMessage && !releases.length) {
+    if (errorMessage) {
       return <FetchError message={errorMessage} onRetry={fetchCollection} />;
     }
 
-    return <Collection releases={releases} visitedReleases={visitedReleases} />;
+    return (
+      <Collection
+        pagination={pagination}
+        releases={releases}
+        visitedReleases={visitedReleases}
+        collectionPath={collectionPath}
+      />
+    );
   }
 }
 
@@ -45,7 +72,8 @@ const mapStateToProps = (state, { match }) => ({
   releases: getCollectionVisibleReleases(state, match.params.sortType),
   isFetching: isCollectionFetching(state),
   errorMessage: getCollectionErrorMessage(state),
-  visitedReleases: getVisitedReleases(state)
+  visitedReleases: getVisitedReleases(state),
+  collectionPath: match.path
 });
 
 VisibleCollection = withRouter(

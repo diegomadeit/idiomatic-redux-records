@@ -15,12 +15,12 @@ export const searchArtist = artist => ({
   artist
 });
 
-export const fetchCollection = () => (dispatch, getState) => {
+export const fetchCollection = opts => (dispatch, getState) => {
   dispatch({
     type: ActionTypes.FETCH_COLLECTION_REQUEST
   });
 
-  return api.fetchRecords().then(
+  return api.fetchRecords(opts).then(
     collection => {
       dispatch({
         type: ActionTypes.FETCH_COLLECTION_SUCCESS,

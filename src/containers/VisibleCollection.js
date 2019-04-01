@@ -12,11 +12,18 @@ import {
 } from "../reducers";
 import Loader from "../components/common/Loader";
 import FetchError from "../components/common/FetchError";
+import { SortTypes } from "../utils/sorting";
 
 class VisibleCollection extends Component {
   generateParameters = location => {
+    const sortType = location.pathname.includes(SortTypes.BY_YEAR)
+      ? SortTypes.BY_YEAR
+      : SortTypes.BY_ARTIST;
     const params = new URLSearchParams(location.search);
-    return params.has("page") ? { query: { page: params.get("page") } } : {};
+
+    return params.has("page")
+      ? { query: { page: params.get("page"), sort: sortType } }
+      : { query: { sort: sortType } };
   };
 
   fetchCollectionData = (shouldFetch = true) => {
@@ -32,8 +39,7 @@ class VisibleCollection extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const shouldFetch =
-      this.props.location.search !== prevProps.location.search;
+    const shouldFetch = this.props.location !== prevProps.location;
     this.fetchCollectionData(shouldFetch);
   }
 
@@ -66,14 +72,16 @@ class VisibleCollection extends Component {
     );
   }
 }
+const getCollectionPath = match =>
+  `${match.params.sortType ? `/records/${match.params.sortType}` : "/records"}`;
 
 const mapStateToProps = (state, { match }) => ({
   pagination: getCollectionPagination(state),
-  releases: getCollectionVisibleReleases(state, match.params.sortType),
+  releases: getCollectionVisibleReleases(state),
   isFetching: isCollectionFetching(state),
   errorMessage: getCollectionErrorMessage(state),
   visitedReleases: getVisitedReleases(state),
-  collectionPath: match.path
+  collectionPath: getCollectionPath(match)
 });
 
 VisibleCollection = withRouter(

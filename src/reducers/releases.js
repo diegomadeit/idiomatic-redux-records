@@ -1,4 +1,3 @@
-import { SortTypes } from "../utils/sorting";
 import { ActionTypes } from "../actions";
 
 const releases = (state = [], action) => {
@@ -12,14 +11,8 @@ const releases = (state = [], action) => {
 
 export default releases;
 
-export const getVisibleReleases = (state, sorter, searchArtist) => {
-  const artistReleases = getArtistReleases(state, searchArtist);
-  return getSortedReleases(artistReleases, sorter);
-};
-
-const getArtistReleases = (releases, searchArtist) => {
-  return searchArtist ? searchArtistReleases(releases, searchArtist) : releases;
-};
+export const getVisibleReleases = (state, searchArtist) =>
+  searchArtist ? searchArtistReleases(state, searchArtist) : state;
 
 const searchArtistReleases = (releases, searchArtist) =>
   releases.filter(
@@ -28,22 +21,3 @@ const searchArtistReleases = (releases, searchArtist) =>
         .toUpperCase()
         .search(searchArtist.toUpperCase()) !== -1
   );
-
-const getSortedReleases = (artistReleases, sorter) => {
-  switch (sorter) {
-    case SortTypes.BY_ARTIST:
-      return artistReleases.sort((r1, r2) => compareReleaseArtist(r1, r2));
-    case SortTypes.BY_YEAR:
-      return artistReleases.sort((r1, r2) => compareReleaseYear(r1, r2));
-    default:
-      return artistReleases;
-  }
-};
-
-const compareReleaseArtist = (release1, release2) =>
-  release1.basic_information.artists[0].name.localeCompare(
-    release2.basic_information.artists[0].name
-  );
-
-const compareReleaseYear = (release1, release2) =>
-  release1.basic_information.year - release2.basic_information.year;

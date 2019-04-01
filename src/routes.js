@@ -15,11 +15,7 @@ export const Routes = () => (
         path="/records/release/:artistId/:recordId"
         render={() => <VisibleCollectionItem collectionPath={"/records"} />}
       />
-      <Route
-        path="/records/sort/:sortType"
-        render={() => <VisibleCollection />}
-      />
-      <Route path="/records" render={() => <VisibleCollection />} />
+      <Route path="/records/:sortType?" render={() => <VisibleCollection />} />
       <Route exact path="/" render={() => <Redirect to="/records" />} />
     </Switch>
   </Router>

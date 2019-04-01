@@ -14,10 +14,9 @@ export default combineReducers({
 export const getCollectionPagination = state =>
   collectionSelectors.getPagination(state.collection);
 
-export const getCollectionVisibleReleases = (state, sorter) =>
+export const getCollectionVisibleReleases = state =>
   collectionSelectors.getVisibleReleases(
     state.collection,
-    sorter,
     state.collectionArtistSearch
   );
 

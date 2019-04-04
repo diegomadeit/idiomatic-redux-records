@@ -11,12 +11,10 @@ describe("App", () => {
   });
 
   it("should have Header", () => {
-    wrapper = shallow(<App />);
     expect(wrapper.contains(<Header />)).toBe(true);
   });
 
   it("should have a main section", () => {
-    wrapper = shallow(<App />);
     expect(wrapper.find("section").length).toBe(1);
   });
 });

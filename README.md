@@ -18,6 +18,7 @@ Image requests to the Discogs API require authentication. To be able to see reco
 - Use of Selectors in Reducers
 - The Middleware Chain
 - Dispatch Actions asynchronously with Thunks
+- Tests with Jest and Enzyme
 
 ### Run the project
 

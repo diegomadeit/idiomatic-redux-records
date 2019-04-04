@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import CollectionItem from "../views/collection/CollectionItem";
 import * as actions from "../actions";
@@ -48,6 +49,16 @@ class VisibleCollectionItem extends Component {
     );
   }
 }
+
+VisibleCollectionItem.propTypes = {
+  collectionPath: PropTypes.string.isRequired,
+  release: PropTypes.object.isRequired,
+  artist: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
+  fetchCollectionItem: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state, { collectionPath }) => ({
   artist: getCollectionItemArtist(state),

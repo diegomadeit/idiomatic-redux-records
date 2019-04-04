@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Artist = ({ artist }) => (
   <article>
@@ -6,5 +7,9 @@ const Artist = ({ artist }) => (
     <p>{artist.profile ? artist.profile : "No data about the artist."}</p>
   </article>
 );
+
+Artist.propTypes = {
+  artist: PropTypes.object.isRequired
+};
 
 export default Artist;

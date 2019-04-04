@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./Record.module.css";
 
 const Record = ({ release }) => (
@@ -52,5 +53,9 @@ const Record = ({ release }) => (
     </article>
   </div>
 );
+
+Record.propTypes = {
+  release: PropTypes.object.isRequired
+};
 
 export default Record;

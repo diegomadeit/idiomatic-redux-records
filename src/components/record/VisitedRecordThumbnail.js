@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import HoverLink from "../common/HoverLink";
 import styles from "./VisitedRecordThumbnail.module.css";
 
@@ -19,5 +20,9 @@ const VisitedRecordThumbnail = ({ release }) => (
     </article>
   </HoverLink>
 );
+
+VisitedRecordThumbnail.propTypes = {
+  release: PropTypes.object.isRequired
+};
 
 export default VisitedRecordThumbnail;

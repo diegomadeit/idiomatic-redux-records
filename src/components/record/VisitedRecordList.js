@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import VisitedRecordThumbnail from "./VisitedRecordThumbnail";
 import styles from "./VisitedRecordList.module.css";
 
@@ -16,4 +17,9 @@ const VisitedRecordList = ({ visitedReleases }) => (
     )}
   </>
 );
+
+VisitedRecordList.propTypes = {
+  visitedReleases: PropTypes.array.isRequired
+};
+
 export default VisitedRecordList;

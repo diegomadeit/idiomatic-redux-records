@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import styles from "./CollectionSorter.module.css";
 import { SortTypes } from "../../utils/sorting";
@@ -13,5 +14,11 @@ const CollectionSorter = ({ sortType, children }) => (
     {children}
   </NavLink>
 );
+
+CollectionSorter.propTypes = {
+  sortType: PropTypes.oneOf([SortTypes.BY_ARTIST, SortTypes.BY_YEAR])
+    .isRequired,
+  children: PropTypes.node.isRequired
+};
 
 export default CollectionSorter;

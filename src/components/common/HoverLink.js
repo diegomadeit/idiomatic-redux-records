@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 class HoverLink extends Component {
@@ -22,4 +23,15 @@ class HoverLink extends Component {
     );
   }
 }
+
+HoverLink.propTypes = {
+  to: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired
+  ]),
+  hoverClass: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
+};
+
 export default HoverLink;

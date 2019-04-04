@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./RecordSearch.module.css";
 
 const RecordSearch = ({ searchArtist, onSubmit, onChange }) => (
@@ -11,5 +12,11 @@ const RecordSearch = ({ searchArtist, onSubmit, onChange }) => (
     />
   </form>
 );
+
+RecordSearch.propTypes = {
+  searchArtist: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
 export default RecordSearch;

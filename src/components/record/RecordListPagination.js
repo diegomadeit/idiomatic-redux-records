@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./RecordListPagination.module.css";
 import HoverLink from "../../components/common/HoverLink";
 
@@ -32,4 +33,10 @@ const RecordListPagination = ({ pagination, collectionPath }) => {
     </div>
   );
 };
+
+RecordListPagination.propTypes = {
+  pagination: PropTypes.object.isRequired,
+  collectionPath: PropTypes.string.isRequired
+};
+
 export default RecordListPagination;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import HoverLink from "../common/HoverLink";
 import styles from "./RecordThumbnail.module.css";
 
@@ -32,5 +33,9 @@ const RecordThumbnail = ({ basic_information }) => (
     </article>
   </HoverLink>
 );
+
+RecordThumbnail.propTypes = {
+  basic_information: PropTypes.object.isRequired
+};
 
 export default RecordThumbnail;

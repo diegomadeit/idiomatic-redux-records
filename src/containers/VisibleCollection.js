@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Collection from "../views/collection/Collection";
 import * as actions from "../actions";
@@ -72,6 +73,18 @@ class VisibleCollection extends Component {
     );
   }
 }
+
+VisibleCollection.propTypes = {
+  pagination: PropTypes.object.isRequired,
+  releases: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
+  fetchCollection: PropTypes.func.isRequired,
+  visitedReleases: PropTypes.array.isRequired,
+  collectionPath: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired
+};
+
 const getCollectionPath = match =>
   `${match.params.sortType ? `/records/${match.params.sortType}` : "/records"}`;
 

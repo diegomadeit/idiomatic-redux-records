@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import styles from "./RecordListPagination.module.css";
 import HoverLink from "../../components/common/HoverLink";
 
-const RecordListPagination = ({ pagination, collectionPath }) => {
-  return (
+const RecordListPagination = ({ pagination, collectionPath }) =>
+  pagination.page &&
+  pagination.pages && (
     <div className={styles.pagination}>
       {pagination.page !== 1 && (
         <HoverLink
@@ -32,7 +33,6 @@ const RecordListPagination = ({ pagination, collectionPath }) => {
       )}
     </div>
   );
-};
 
 RecordListPagination.propTypes = {
   pagination: PropTypes.object.isRequired,

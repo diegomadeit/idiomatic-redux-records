@@ -11,7 +11,7 @@ const RecordList = ({ releases }) =>
       ))}
     </div>
   ) : (
-    <p>Artist not found in the collection.</p>
+    <p>Empty collection.</p>
   );
 
 RecordList.propTypes = {

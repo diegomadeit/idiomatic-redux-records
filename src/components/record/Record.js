@@ -5,7 +5,7 @@ import styles from "./Record.module.css";
 const Record = ({ release }) => (
   <div className={styles.record}>
     <div className={styles.record__covers}>
-      {release.images ? (
+      {release.images && release.images.length ? (
         Object.keys(release.images)
           .slice(0, 5)
           .map(key => (
@@ -36,7 +36,7 @@ const Record = ({ release }) => (
       </h1>
       <h2 className={styles.record__title}>{release.title}</h2>
       <ul className={styles.record__songs}>
-        {release.tracklist ? (
+        {release.tracklist && release.tracklist.length ? (
           Object.keys(release.tracklist).map(key => (
             <li key={key} className={styles.record__song}>
               {release.tracklist[key].position} {release.tracklist[key].title}

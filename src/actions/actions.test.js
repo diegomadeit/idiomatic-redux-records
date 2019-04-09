@@ -1,4 +1,9 @@
-import * as actions from ".";
+import {
+  ActionTypes,
+  searchArtist,
+  fetchCollection,
+  fetchCollectionItem
+} from ".";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
@@ -8,10 +13,10 @@ describe("actions", () => {
     it("should create searchArtist action", () => {
       const artist = "Pink Floyd";
       const expectedAction = {
-        type: actions.ActionTypes.SEARCH_ARTIST,
+        type: ActionTypes.SEARCH_ARTIST,
         artist
       };
-      expect(actions.searchArtist(artist)).toEqual(expectedAction);
+      expect(searchArtist(artist)).toEqual(expectedAction);
     });
   });
 
@@ -32,10 +37,10 @@ describe("actions", () => {
 
       const expectedActions = [
         {
-          type: actions.ActionTypes.FETCH_COLLECTION_REQUEST
+          type: ActionTypes.FETCH_COLLECTION_REQUEST
         },
         {
-          type: actions.ActionTypes.FETCH_COLLECTION_SUCCESS,
+          type: ActionTypes.FETCH_COLLECTION_SUCCESS,
           pagination: {},
           releases: []
         }
@@ -43,7 +48,7 @@ describe("actions", () => {
 
       store = mockStore({ collection: {} });
 
-      await store.dispatch(actions.fetchCollection());
+      await store.dispatch(fetchCollection());
 
       expect(store.getActions()).toEqual(expectedActions);
     });
@@ -56,10 +61,10 @@ describe("actions", () => {
 
       const expectedActions = [
         {
-          type: actions.ActionTypes.FETCH_COLLECTION_ITEM_REQUEST
+          type: ActionTypes.FETCH_COLLECTION_ITEM_REQUEST
         },
         {
-          type: actions.ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
+          type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
           artist: {},
           release: {}
         }
@@ -69,7 +74,7 @@ describe("actions", () => {
 
       const params = { artistId: "8699", recordId: "3208548" };
       await store.dispatch(
-        actions.fetchCollectionItem(params.artistId, params.recordId)
+        fetchCollectionItem(params.artistId, params.recordId)
       );
 
       expect(store.getActions()).toEqual(expectedActions);

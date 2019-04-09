@@ -8,8 +8,7 @@ import {
   getCollectionPagination,
   getCollectionVisibleReleases,
   isCollectionFetching,
-  getCollectionErrorMessage,
-  getVisitedReleases
+  getCollectionErrorMessage
 } from "../reducers";
 import Loader from "../components/common/Loader";
 import FetchError from "../components/common/FetchError";
@@ -51,7 +50,6 @@ class VisibleCollection extends Component {
       isFetching,
       errorMessage,
       fetchCollection,
-      visitedReleases,
       collectionPath
     } = this.props;
 
@@ -67,7 +65,6 @@ class VisibleCollection extends Component {
       <Collection
         pagination={pagination}
         releases={releases}
-        visitedReleases={visitedReleases}
         collectionPath={collectionPath}
       />
     );
@@ -80,7 +77,6 @@ VisibleCollection.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
   fetchCollection: PropTypes.func.isRequired,
-  visitedReleases: PropTypes.array.isRequired,
   collectionPath: PropTypes.string.isRequired,
   location: PropTypes.object.isRequired
 };
@@ -93,7 +89,6 @@ const mapStateToProps = (state, { match }) => ({
   releases: getCollectionVisibleReleases(state),
   isFetching: isCollectionFetching(state),
   errorMessage: getCollectionErrorMessage(state),
-  visitedReleases: getVisitedReleases(state),
   collectionPath: getCollectionPath(match)
 });
 

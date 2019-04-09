@@ -4,7 +4,7 @@ import VisitedRecordThumbnail from "./VisitedRecordThumbnail";
 import styles from "./VisitedRecordList.module.css";
 
 const VisitedRecordList = ({ visitedReleases }) => (
-  <>
+  <div className="row">
     <h2>Recently visited records</h2>
     {!!visitedReleases.length ? (
       <div className={styles.records}>
@@ -15,7 +15,7 @@ const VisitedRecordList = ({ visitedReleases }) => (
     ) : (
       <p>No record visited.</p>
     )}
-  </>
+  </div>
 );
 
 VisitedRecordList.propTypes = {

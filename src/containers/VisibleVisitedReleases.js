@@ -1,13 +1,7 @@
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getVisitedReleases } from "../reducers";
-import { createSelector } from "reselect";
+import { visitedReleasesSelector } from "../reducers";
 import VisitedRecordList from "../components/record/VisitedRecordList";
-
-const visitedReleasesSelector = createSelector(
-  state => getVisitedReleases(state),
-  visitedReleases => visitedReleases
-);
 
 const mapStateToProps = state => ({
   visitedReleases: visitedReleasesSelector(state)

@@ -3,6 +3,7 @@ import collection, * as collectionSelectors from "./collection";
 import collectionItem, * as collectionItemSelectors from "./collectionItem";
 import collectionArtistSearch, * as collectionArtistSearchSelectors from "./collectionArtistSearch";
 import visitedReleases, * as visitedReleasesSelectors from "./visitedReleases";
+import { createSelector } from "reselect";
 
 export default combineReducers({
   collection,
@@ -45,3 +46,8 @@ export const getCollectionArtistSearch = state =>
   collectionArtistSearchSelectors.getCollectionArtistSearch(
     state.collectionArtistSearch
   );
+
+export const visitedReleasesSelector = createSelector(
+  state => getVisitedReleases(state),
+  visitedReleases => visitedReleases
+);

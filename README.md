@@ -13,12 +13,13 @@ Image requests to the Discogs API require authentication. To be able to see reco
 ### Covered concepts
 
 - Use browser localStorage API to persist the State
-- Filter Redux State with React Router Params
+- Filter Redux State with [React Router](https://github.com/ReactTraining/react-router) Params
 - Use withRouter() to inject the Params into Connected Components
 - Use of Selectors in Reducers
-- The Middleware Chain
-- Dispatch Actions asynchronously with Thunks
-- Tests with Jest and Enzyme
+- Memoized Selectors with [Reselect](https://github.com/reduxjs/reselect)
+- Understand the Middleware Chain
+- Dispatch Actions asynchronously with [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+- Tests with [Jest](https://jestjs.io/) and [Enzyme](https://airbnb.io/enzyme/)
 
 ### Run the project
 

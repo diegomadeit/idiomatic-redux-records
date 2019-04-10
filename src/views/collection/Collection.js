@@ -1,22 +1,11 @@
 import React from "react";
-import RecordList from "../../components/record/RecordList";
-import RecordActions from "../../components/record/RecordActions";
-import RecordListPagination from "../../components/record/RecordListPagination";
+import VisibleCollection from "../../containers/VisibleCollection";
+import VisibleVisitedReleases from "../../containers/VisibleVisitedReleases";
 
-const Collection = ({ pagination, releases, collectionPath }) => (
+const Collection = () => (
   <>
-    <div className="row">
-      <RecordActions />
-    </div>
-    <div className="row">
-      <RecordList releases={releases} />
-    </div>
-    <div className="row">
-      <RecordListPagination
-        pagination={pagination}
-        collectionPath={collectionPath}
-      />
-    </div>
+    <VisibleCollection />
+    <VisibleVisitedReleases />
   </>
 );
 

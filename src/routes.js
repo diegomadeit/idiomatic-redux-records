@@ -5,8 +5,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import VisibleCollection from "./containers/VisibleCollection";
-import VisibleVisitedReleases from "./containers/VisibleVisitedReleases";
+import Collection from "./views/collection/Collection";
 import VisibleCollectionItem from "./containers/VisibleCollectionItem";
 
 export const Routes = () => (
@@ -16,15 +15,7 @@ export const Routes = () => (
         path="/records/release/:artistId/:recordId"
         render={() => <VisibleCollectionItem collectionPath={"/records"} />}
       />
-      <Route
-        path="/records/:sortType?"
-        render={() => (
-          <>
-            <VisibleCollection />
-            <VisibleVisitedReleases />
-          </>
-        )}
-      />
+      <Route path="/records/:sortType?" render={() => <Collection />} />
       <Route exact path="/" render={() => <Redirect to="/records" />} />
     </Switch>
   </Router>

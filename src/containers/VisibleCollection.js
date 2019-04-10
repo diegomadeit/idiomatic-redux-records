@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Collection from "../views/collection/Collection";
+import RecordList from "../components/record/RecordList";
+import RecordActions from "../components/record/RecordActions";
+import RecordListPagination from "../components/record/RecordListPagination";
 import * as actions from "../actions";
 import { withRouter } from "react-router";
 import {
@@ -62,11 +64,20 @@ class VisibleCollection extends Component {
     }
 
     return (
-      <Collection
-        pagination={pagination}
-        releases={releases}
-        collectionPath={collectionPath}
-      />
+      <>
+        <div className="row">
+          <RecordActions />
+        </div>
+        <div className="row">
+          <RecordList releases={releases} />
+        </div>
+        <div className="row">
+          <RecordListPagination
+            pagination={pagination}
+            collectionPath={collectionPath}
+          />
+        </div>
+      </>
     );
   }
 }

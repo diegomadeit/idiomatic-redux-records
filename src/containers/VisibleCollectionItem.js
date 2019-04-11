@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import CollectionItem from "../views/collection/CollectionItem";
 import * as actions from "../actions";
 import { withRouter } from "react-router";
 import {
@@ -12,6 +11,9 @@ import {
 } from "../reducers";
 import Loader from "../components/common/Loader";
 import FetchError from "../components/common/FetchError";
+import Record from "../components/record/Record";
+import Artist from "../components/artist/Artist";
+import HoverLink from "../components/common/HoverLink";
 
 class VisibleCollectionItem extends Component {
   componentDidMount() {
@@ -41,11 +43,19 @@ class VisibleCollectionItem extends Component {
     }
 
     return (
-      <CollectionItem
-        collectionPath={collectionPath}
-        release={release}
-        artist={artist}
-      />
+      <>
+        <div className="row">{<Record release={release} />}</div>
+        <div className="row">{<Artist artist={artist} />}</div>
+        <div className="row">
+          <HoverLink
+            to={collectionPath}
+            className="button"
+            hoverClass="button--hover"
+          >
+            <span>Back to collection</span>
+          </HoverLink>
+        </div>
+      </>
     );
   }
 }

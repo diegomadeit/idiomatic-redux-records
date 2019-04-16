@@ -12,6 +12,11 @@ export const ActionTypes = {
   FETCH_COLLECTION_ITEM_FAILURE: "FETCH_COLLECTION_ITEM_FAILURE"
 };
 
+export const NormalizedEntities = {
+  ARTIST: "artist",
+  RELEASE: "release"
+};
+
 export const searchArtist = artist => ({
   type: ActionTypes.SEARCH_ARTIST,
   artist
@@ -49,8 +54,7 @@ export const fetchCollectionItem = (artistId, recordId) => async dispatch => {
 
     dispatch({
       type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
-      artist,
-      release
+      response: normalize({ artist, release }, schema.collectionItemValues)
     });
   } catch (error) {
     dispatch({

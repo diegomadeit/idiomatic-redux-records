@@ -1,4 +1,4 @@
-import { ActionTypes } from "../actions";
+import { ActionTypes, NormalizedEntities } from "../actions";
 
 const findReleaseIndex = (state, releaseId) =>
   state.findIndex(release => release.id === releaseId);
@@ -6,12 +6,13 @@ const findReleaseIndex = (state, releaseId) =>
 const visitedReleases = (state = [], action) => {
   switch (action.type) {
     case ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS:
-      const releaseIndex = findReleaseIndex(state, action.release.id);
+      const releaseId = action.response.result[NormalizedEntities.RELEASE];
+      const releaseIndex = findReleaseIndex(state, releaseId);
 
       return releaseIndex === -1
-        ? [action.release, ...state]
+        ? [action.response.entities.item[releaseId], ...state]
         : [
-            action.release,
+            action.response.entities.item[releaseId],
             ...state.slice(0, releaseIndex),
             ...state.slice(releaseIndex + 1, state.length)
           ];

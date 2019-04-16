@@ -1,13 +1,9 @@
 import { schema } from "normalizr";
 
-export const pagination = new schema.Entity(
-  "pagination",
-  {},
-  { idAttribute: "page" }
-);
+const pagination = new schema.Entity("pagination", {}, { idAttribute: "page" });
 
-export const release = new schema.Entity("releases");
-export const releases = [release];
+const release = new schema.Entity("releases");
+const releases = [release];
 
 export const collection = new schema.Entity(
   "collection",
@@ -17,3 +13,6 @@ export const collection = new schema.Entity(
   },
   { idAttribute: () => "default" }
 );
+
+const item = new schema.Entity("item");
+export const collectionItemValues = new schema.Values(item);

@@ -1,6 +1,8 @@
 import visitedReleases from "./visitedReleases";
 import { ActionTypes } from "../actions";
 import { visitedReleasesSelector } from ".";
+import { normalize } from "normalizr";
+import * as schema from "../actions/schema";
 
 describe("visitedReleases reducer", () => {
   it("should return the initial state", () => {
@@ -11,21 +13,21 @@ describe("visitedReleases reducer", () => {
     expect(
       visitedReleases([], {
         type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
-        release: { id: 1 }
+        response: normalize({ release: { id: 1 } }, schema.collectionItemValues)
       })
     ).toEqual([{ id: 1 }]);
 
     expect(
       visitedReleases([{ id: 1 }], {
         type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
-        release: { id: 2 }
+        response: normalize({ release: { id: 2 } }, schema.collectionItemValues)
       })
     ).toEqual([{ id: 2 }, { id: 1 }]);
 
     expect(
       visitedReleases([{ id: 2 }, { id: 1 }], {
         type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
-        release: { id: 1 }
+        response: normalize({ release: { id: 1 } }, schema.collectionItemValues)
       })
     ).toEqual([{ id: 1 }, { id: 2 }]);
   });
@@ -39,7 +41,7 @@ describe("visitedReleases reducer", () => {
 
     let state = getMockState([], {
       type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
-      release: { id: 1 }
+      response: normalize({ release: { id: 1 } }, schema.collectionItemValues)
     });
     expect(visitedReleasesSelector(state)).toEqual([{ id: 1 }]);
 
@@ -51,7 +53,7 @@ describe("visitedReleases reducer", () => {
 
     state = getMockState(state.visitedReleases, {
       type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
-      release: { id: 2 }
+      response: normalize({ release: { id: 2 } }, schema.collectionItemValues)
     });
     expect(visitedReleasesSelector(state)).toEqual([{ id: 2 }, { id: 1 }]);
     expect(visitedReleasesSelector.recomputations()).toBe(2);

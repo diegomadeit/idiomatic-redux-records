@@ -1,9 +1,10 @@
-import { ActionTypes } from "../actions";
+import { ActionTypes, NormalizedEntities } from "../actions";
 
 const release = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS:
-      return action.release;
+      const releaseId = action.response.result[NormalizedEntities.RELEASE];
+      return action.response.entities.item[releaseId];
     default:
       return state;
   }

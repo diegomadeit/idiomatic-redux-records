@@ -69,8 +69,10 @@ describe("actions", () => {
         },
         {
           type: ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS,
-          artist: {},
-          release: {}
+          response: normalize(
+            { artist: {}, release: {} },
+            schema.collectionItemValues
+          )
         }
       ];
 

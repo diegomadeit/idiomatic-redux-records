@@ -1,9 +1,10 @@
-import { ActionTypes } from "../actions";
+import { ActionTypes, NormalizedEntities } from "../actions";
 
 const artist = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_COLLECTION_ITEM_SUCCESS:
-      return action.artist;
+      const artistId = action.response.result[NormalizedEntities.ARTIST];
+      return action.response.entities.item[artistId];
     default:
       return state;
   }

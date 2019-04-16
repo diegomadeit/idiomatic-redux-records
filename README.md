@@ -17,6 +17,7 @@ Image requests to the Discogs API require authentication. To be able to see reco
 - Use withRouter() to inject the Params into Connected Components
 - Use of Selectors in Reducers
 - Memoized Selectors with [Reselect](https://github.com/reduxjs/reselect)
+- Normalize Redux State shape with [normalizr](https://github.com/paularmstrong/normalizr)
 - Understand the Middleware Chain
 - Dispatch Actions asynchronously with [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 - Tests with [Jest](https://jestjs.io/) and [Enzyme](https://airbnb.io/enzyme/)

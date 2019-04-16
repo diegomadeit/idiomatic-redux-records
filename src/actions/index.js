@@ -1,4 +1,6 @@
 import * as api from "../data/api/records";
+import { normalize } from "normalizr";
+import * as schema from "./schema";
 
 export const ActionTypes = {
   SEARCH_ARTIST: "SEARCH_ARTIST",
@@ -24,8 +26,7 @@ export const fetchCollection = opts => async dispatch => {
     const collection = await api.fetchRecords(opts);
     dispatch({
       type: ActionTypes.FETCH_COLLECTION_SUCCESS,
-      pagination: collection.pagination,
-      releases: collection.releases
+      response: normalize(collection, schema.collection)
     });
   } catch (error) {
     dispatch({

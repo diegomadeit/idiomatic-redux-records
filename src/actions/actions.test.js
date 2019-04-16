@@ -7,6 +7,8 @@ import {
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
+import { normalize } from "normalizr";
+import * as schema from "./schema";
 
 describe("actions", () => {
   describe("action creators", () => {
@@ -41,8 +43,10 @@ describe("actions", () => {
         },
         {
           type: ActionTypes.FETCH_COLLECTION_SUCCESS,
-          pagination: {},
-          releases: []
+          response: normalize(
+            { pagination: {}, releases: [] },
+            schema.collection
+          )
         }
       ];
 

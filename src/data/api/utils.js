@@ -1,5 +1,5 @@
 const BASE_URL = "https://api.discogs.com";
-const AUTH_TOKEN = "";
+const AUTH_TOKEN = process.env.REACT_APP_AUTH_TOKEN;
 
 const completeUrl = (path, params = {}) => {
   let url = new URL(`${BASE_URL}${path}`);
